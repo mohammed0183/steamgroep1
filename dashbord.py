@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
+import tkinter as tk
+import json
 
 
 
@@ -13,6 +15,17 @@ imgLabel.pack(side=TOP)
 
 label = Label(root, text='')
 label.pack(ipadx=5, ipady=10, side=LEFT)
+def lezen():
+    json_filename = 'steam.json'
+    with open(json_filename, 'r') as inside:
+        data = json.load(inside)
+    text = json.dumps(data, indent=2)
+    root = tk.Tk()
+
+    txt = tk.Text(root, font="Times32")
+    root.title('Steam')
+    txt.pack()
+    txt.insert('end', text)
 
 
 def fun():
@@ -29,7 +42,9 @@ def x3():
 def x5():
     messagebox.showinfo("Aanbevelingen", "Red Button clicked")
 
-
+lezenn = Button(root, text='lezen', font=('italic', 10), fg='white', bg=
+"Black",command=lezen)
+lezenn.place(x=450, y=300)
 inzenden = Button(root, text='Mijn vrienden', font=('italic', 10), fg='white', bg=
 "Black",command=fun )
 inzenden.place(x=150, y=500)
