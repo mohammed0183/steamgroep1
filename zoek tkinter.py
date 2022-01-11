@@ -8,27 +8,30 @@ import tkinter.messagebox as messagebox
 tijd=datetime.now()
 print(tijd)
 def inzenden():
- naam = e_name.get()
+ x = e_name.get()
+ m = int(x)
+
  with open('steam.json') as json_file:
   data = json.load(json_file)
+ if m == '':
+  messagebox.showinfo('Zoek status', 'Het veld Appid moet verplicht worden ingevuld.')
 
- for i in data:
-  if naam == '':
-   messagebox.showinfo('Zoek status', 'Het veld Appid moet verplicht worden ingevuld.')
 
-  if i['appid'] == int(naam):
-   print(i['appid'])
-   print(i['name'])
-   print(i['release_date'])
-   print(i['english'])
-   print(i['developer'])
-   print(i['publisher'])
-   print(i['platforms'])
-  else:
-   messagebox.showinfo('Zoek status', 'Het veld Appid moet verplicht worden ingevuld')
+ else:
+  for i in data:
+   if i['appid'] == int(m):
+    print(i['appid'])
+    print(i['name'])
+    print(i['release_date'])
+    print(i['english'])
+    print(i['developer'])
+    print(i['publisher'])
+    print(i['platforms'])
 
-  break
-  e_name.delete(0, "end")
+   break
+ e_name.delete(0, "end")
+
+
 
 
 root = Tk()
