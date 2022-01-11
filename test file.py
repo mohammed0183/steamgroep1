@@ -1,5 +1,5 @@
 import json
-import pprint
+
 
 x = int(input('welke getal '))
 with open ('steam.json') as json_file:
@@ -16,3 +16,4 @@ for i in data:
         print(i['platforms'])
 
         break
+
