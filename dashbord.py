@@ -35,13 +35,34 @@ def fun():
     root.quit
 
 def x1():
-    messagebox.showinfo("Meest gespeeld", "Red Button clicked")
+    json_filename = 'steam.json'
+    with open(json_filename, 'r') as inside:
+        data = json.load(inside)
+
+    x =  json.dumps(sorted(data, key=lambda k: int(k['average_playtime']), reverse = True), indent=2)
+    root = tk.Tk()
+
+    txt = tk.Text(root, font="Times32")
+    root.title('Steam')
+    txt.pack()
+    txt.insert('end', x)
+
 def x2():
     messagebox.showinfo("Vrienden", "Red Button clicked")
 def x3():
     messagebox.showinfo("Mijn planning", "Red Button clicked")
 def x5():
-    messagebox.showinfo("Aanbevelingen", "Red Button clicked")
+    json_filename = 'steam.json'
+    with open(json_filename, 'r') as inside:
+        data = json.load(inside)
+
+    x =  json.dumps(sorted(data, key=lambda k: int(k['positive_ratings']), reverse = True), indent=2)
+    root = tk.Tk()
+
+    txt = tk.Text(root, font="Times32")
+    root.title('Steam')
+    txt.pack()
+    txt.insert('end', x)
 
 lezenn = Button(root, text='lezen', font=('italic', 10), fg='white', bg=
 "Black",command=lezen)
