@@ -9,16 +9,12 @@ tijd=datetime.now()
 print(tijd)
 def inzenden():
  x = e_name.get()
- try:
-  x = int(e_name.get())
- except ValueError:
-  messagebox.showinfo('Zoek status', 'Vul alleen een cijfer in!')
- with open('steam.json') as json_file:
-  data = json.load(json_file)
  if x == '':
   messagebox.showinfo('Zoek status', 'Het veld Appid moet verplicht worden ingevuld.')
+ with open('steam.json') as json_file:
+  data = json.load(json_file)
  for i in data:
-  if i['appid'] == int(x):
+  if i['name'] == x:
    print(i['appid'])
    print(i['name'])
    print(i['release_date'])
@@ -26,14 +22,10 @@ def inzenden():
    print(i['developer'])
    print(i['publisher'])
    print(i['platforms'])
-  else:
-   messagebox.showinfo('Zoek status', 'niks gevonden')
 
-   break
+  break
+  e_name.delete(0, "end")
 
-
-   break
- e_name.delete(0, "end")
 
 
 
