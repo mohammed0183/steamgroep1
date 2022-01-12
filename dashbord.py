@@ -19,7 +19,8 @@ def lezen():
     json_filename = 'steam.json'
     with open(json_filename, 'r') as inside:
         data = json.load(inside)
-    text = json.dumps(data, indent=2)
+    text = json.dumps(sorted(data, key=lambda k: int(k['appid']), reverse = False), indent=2)
+
     root = tk.Tk()
 
     txt = tk.Text(root, font="Times32")
