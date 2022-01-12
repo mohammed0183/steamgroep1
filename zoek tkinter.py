@@ -35,12 +35,9 @@ def inzenden():
    break
  e_name.delete(0, "end")
 
-
-
-
 root = Tk()
-root.geometry('600x300');
-root.title('zoeken');
+root.geometry('600x300')
+root.title('zoeken')
 naam = Label(root, text = "Voer de appid in.", font=('bold', 10) )
 naam.place(x=20, y=30)
 e_name = Entry()
