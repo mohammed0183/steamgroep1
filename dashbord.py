@@ -17,35 +17,27 @@ imgLabel.pack(side=TOP)
 label = Label(splash_root, text='')
 label.pack(ipadx=5, ipady=10, side=LEFT)
 
-
-
 def main_window():
     splash_root.destroy()
-    root = Tk()
-    root.geometry("1000x800")
-    root.title("Steam Dashbord")
-    root.iconbitmap("Steam_icon.ico")
-
-
-    photo = PhotoImage(file="steam_banner.png")
-    imgLabel = Label(root, image=photo)
-    imgLabel.pack(side=TOP)
-    label = Label(root, text='')
-    label.pack(ipadx=5, ipady=10, side=LEFT)
 
     def lezen():
+
+        hoofdframe.pack_forget()
+        lezenframe.pack()
+        imgLabel.pack_forget()
         json_filename = 'steam.json'
         with open(json_filename, 'r') as inside:
             data = json.load(inside)
-        text = pd.read_json('steam.json').to_string()
-
-        root = tk.Tk()
-        root.geometry("1000x500")
-
+        text = json.dumps(data, indent=2)
         txt = tk.Text(root, font="Times32")
         root.title('Steam')
         txt.pack()
         txt.insert('end', text)
+
+    def hoofd():
+        lezenframe.pack_forget()
+        hoofdframe.pack()
+        imgLabel.pack()
 
 
     def fun():
@@ -54,55 +46,59 @@ def main_window():
         root.quit
 
     def x1():
-        json_filename = 'steam.json'
-        with open(json_filename, 'r') as inside:
-            data = json.load(inside)
-
-        x =  json.dumps(sorted(data, key=lambda k: int(k['average_playtime']), reverse = True), indent=2)
-        root = tk.Tk()
-
-        txt = tk.Text(root, font="Times32")
-        root.title('Steam')
-        txt.pack()
-        txt.insert('end', x)
-
+        messagebox.showinfo("Meest gespeeld", "Red Button clicked")
     def x2():
         messagebox.showinfo("Vrienden", "Red Button clicked")
     def x3():
         messagebox.showinfo("Mijn planning", "Red Button clicked")
     def x5():
-        json_filename = 'steam.json'
-        with open(json_filename, 'r') as inside:
-            data = json.load(inside)
+        messagebox.showinfo("Aanbevelingen", "Red Button clicked")
 
-        x =  json.dumps(sorted(data, key=lambda k: int(k['positive_ratings']), reverse = True), indent=2)
-        root = tk.Tk()
+    root = Tk()
+    hoofdframe = LabelFrame(root, text="Steam")
+    hoofdframe.pack(ipadx=500,
+        ipady=50,
+        expand=False,
+        side=BOTTOM)
 
-        txt = tk.Text(root, font="Times32")
-        root.title('Steam')
-        txt.pack()
-        txt.insert('end', x)
+    photo = PhotoImage(file="steam_banner.png")
+    imgLabel = Label(root, image=photo)
+    imgLabel.pack(side=TOP, pady=10)
 
-    lezenn = Button(root, text='lezen', font=('italic', 10), fg='white', bg=
+
+    lezenn = Button(hoofdframe, text='Lezen', font=('italic', 10), fg='white', bg=
     "Black",command=lezen)
-    lezenn.place(x=450, y=300)
-    inzenden = Button(root, text='Mijn vrienden', font=('italic', 10), fg='white', bg=
+    lezenn.grid(row=5, column=4, pady=50)
+
+    inzenden = Button(hoofdframe, text='Mijn vrienden', font=('italic', 10), fg='white', bg=
     "Black",command=fun )
-    inzenden.place(x=150, y=500)
-    x1 = Button(root, text='Meest gespeeld', font=('italic', 10), fg='white', bg=
+    inzenden.grid(row=7, column=2, pady=10, padx= 46)
+
+    x1 = Button(hoofdframe, text='Meest gespeeld', font=('italic', 10), fg='white', bg=
     "Black",command=x1)
-    x1.place(x=300, y=500)
-    x2 = Button(root, text='Vrienden', font=('italic', 10), fg='white', bg=
+    x1.grid(row=7, column=3, pady=10, padx= 46)
+
+    x2 = Button(hoofdframe, text='Vrienden', font=('italic', 10), fg='white', bg=
     "Black",command=x2)
-    x2.place(x=450, y=500)
-    x3 = Button(root, text='Mijn planning', font=('italic', 10), fg='white', bg=
+    x2.grid(row=7, column=4, pady=10, padx= 46)
+
+    x3 = Button(hoofdframe, text='Mijn planning', font=('italic', 10), fg='white', bg=
     "Black",command=x3)
-    x3.place(x=600, y=500)
-    x5 = Button(root, text='Aanbevelingen', font=('italic', 10), fg='white', bg=
+    x3.grid(row=7, column=5, pady=10, padx= 46)
+
+    x5 = Button(hoofdframe, text='Aanbevelingen', font=('italic', 10), fg='white', bg=
     "Black",command=x5)
-    x5.place(x=750, y=500)
+    x5.grid(row=7, column=6, pady=10, padx= 46)
+
+    root.geometry("900x500")
+
+    lezenframe = LabelFrame(root, text="")
+    lezenframe.pack(pady=20)
+
+    gaterug = Button(lezenframe,text= "Terug naar hoofdmenu", font=('italic', 10), fg='white', bg=
+    "Black",command=hoofd)
+    gaterug.grid(row=1, column=4)
+
     mainloop()
-
 splash_root.after(3000, main_window)
-
 mainloop()
