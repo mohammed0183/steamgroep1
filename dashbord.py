@@ -2,13 +2,20 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
 import json
+import pandas as pd
 
 splash_root = Tk()
 splash_root.title("Welkom")
-splash_root.geometry('300x200+650+250')
+splash_root.geometry('350x200+650+250')
 
-splash_label = Label(splash_root, text="Welkom bij Steam controller", font=("Helvetica", 16))
-splash_label.pack(pady=20)
+# splash_label = Label(splash_root, text="Welkom bij Steam controller", font=("Helvetica", 16))
+# splash_label.pack(pady=20)
+
+photo = PhotoImage(file="steam_welkom.png")
+imgLabel = Label(splash_root, image=photo)
+imgLabel.pack(side=TOP)
+label = Label(splash_root, text='')
+label.pack(ipadx=5, ipady=10, side=LEFT)
 
 
 
@@ -30,9 +37,10 @@ def main_window():
         json_filename = 'steam.json'
         with open(json_filename, 'r') as inside:
             data = json.load(inside)
-        text = json.dumps(sorted(data, key=lambda k: int(k['appid']), reverse = False), indent=2)
+        text = pd.read_json('steam.json').to_string()
 
         root = tk.Tk()
+        root.geometry("1000x500")
 
         txt = tk.Text(root, font="Times32")
         root.title('Steam')
