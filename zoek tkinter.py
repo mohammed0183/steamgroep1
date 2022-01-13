@@ -32,7 +32,7 @@ def inzenden():
    break
 
 
-   break
+
  e_name.delete(0, "end")
 
 root = Tk()
