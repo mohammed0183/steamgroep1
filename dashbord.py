@@ -1,24 +1,33 @@
+from tkinter import ttk
+from tkinter.ttk import Progressbar
 from tkinter import *
-from tkinter import messagebox
 import tkinter as tk
+from tkinter import messagebox
 import json
-import pandas as pd
+import webbrowser
 
-splash_root = Tk()
-splash_root.title("Welkom")
-splash_root.geometry('350x200+650+250')
+w=Tk()
+s = ttk.Style()
+s.theme_use('clam')
+s.configure("red.Horizontal.TProgressbar", foreground='red', background='#4f4f4f')
+progress=Progressbar(w,style="red.Horizontal.TProgressbar",orient=HORIZONTAL,length=500,mode='determinate',)
 
-# splash_label = Label(splash_root, text="Welkom bij Steam controller", font=("Helvetica", 16))
-# splash_label.pack(pady=20)
+width_of_window = 427
+height_of_window = 250
+screen_width = w.winfo_screenwidth()
+screen_height = w.winfo_screenheight()
+x_coordinate = (screen_width/2)-(width_of_window/2)
+y_coordinate = (screen_height/2)-(height_of_window/2)
+w.geometry("%dx%d+%d+%d" %(width_of_window,height_of_window,x_coordinate,y_coordinate))
 
-photo = PhotoImage(file="steam_welkom.png")
-imgLabel = Label(splash_root, image=photo)
-imgLabel.pack(side=TOP)
-label = Label(splash_root, text='')
-label.pack(ipadx=5, ipady=10, side=LEFT)
 
-def main_window():
-    splash_root.destroy()
+w.overrideredirect(1)
+
+
+
+#############progressbar          33333333333333333333333333333
+def new_win():
+  # w.destroy()
 
     def lezen():
 
@@ -36,9 +45,11 @@ def main_window():
         txt.insert('end', text)
 
     def hoofd():
-        lezenframe.pack_forget()
-        hoofdframe.pack()
-        imgLabel.pack()
+
+        root.destroy()
+        new_win()
+    def vragen():
+        webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
 
 
     def fun():
@@ -104,6 +115,10 @@ def main_window():
     "Black",command=x5)
     x5.grid(row=7, column=6, pady=10, padx= 46)
 
+    x6 = Button(hoofdframe, text='Vragen?', font=('italic', 10), fg='white', bg=
+    "#5865F2",command=vragen)
+    x6.grid(row=9, column=4, pady=10, padx= 46)
+
     root.geometry("900x500")
 
     lezenframe = LabelFrame(root, text="")
@@ -114,5 +129,76 @@ def main_window():
     gaterug.grid(row=1, column=4)
 
     mainloop()
-splash_root.after(3000, main_window)
-mainloop()
+
+
+
+def bar():
+
+    l4=Label(w,text='Loading...',fg='white',bg=a)
+    lst4=('Calibri (Body)',10)
+    l4.config(font=lst4)
+    l4.place(x=18,y=210)
+
+    import time
+    r=0
+    for i in range(100):
+        progress['value']=r
+        w.update_idletasks()
+        time.sleep(0.03)
+        r=r+1
+
+    w.destroy()
+    new_win()
+
+
+
+
+progress.place(x=-10,y=235)
+
+
+
+
+#############
+# frame 333333333333333333333333
+#
+###########
+
+
+
+
+
+'''
+
+def rgb(r):
+    return "#%02x%02x%02x" % r
+#Frame(w,width=432,height=241,bg=rgb((100,100,100))).
+'''
+a='#249794'
+Frame(w,width=427,height=241,bg=a).place(x=0,y=0)  #249794
+b1=Button(w,width=10,height=1,text='Get Started',command=bar,border=0,fg=a,bg='white')
+b1.place(x=170,y=200)
+
+
+######## Label
+
+l1=Label(w,text='STEAM',fg='white',bg=a)
+lst1=('Calibri (Body)',18,'bold')
+l1.config(font=lst1)
+l1.place(x=50,y=80)
+
+l2=Label(w,text='INTERFACE',fg='white',bg=a)
+lst2=('Calibri (Body)',18)
+l2.config(font=lst2)
+l2.place(x=155,y=82)
+
+l3=Label(w,text='PROGRAMMED',fg='white',bg=a)
+lst3=('Calibri (Body)',13)
+l3.config(font=lst3)
+l3.place(x=50,y=110)
+
+
+
+
+w.mainloop()
+
+
