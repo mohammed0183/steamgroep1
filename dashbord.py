@@ -29,6 +29,7 @@ def main_window():
         with open(json_filename, 'r') as inside:
             data = json.load(inside)
         text = json.dumps(data, indent=2)
+
         txt = tk.Text(root, font="Times32")
         root.title('Steam')
         txt.pack()
@@ -52,9 +53,22 @@ def main_window():
     def x3():
         messagebox.showinfo("Mijn planning", "Red Button clicked")
     def x5():
-        messagebox.showinfo("Aanbevelingen", "Red Button clicked")
+
+        hoofdframe.pack_forget()
+        lezenframe.pack()
+        imgLabel.pack_forget()
+        json_filename = 'steam.json'
+        with open(json_filename, 'r') as inside:
+            data = json.load(inside)
+        text = json.dumps(sorted(data, key=lambda k: int(k['positive_ratings']), reverse = True), indent=2)
+        txt = tk.Text(root, font="Times32")
+        root.title('Steam')
+        txt.pack()
+        txt.insert('end', text)
+
 
     root = Tk()
+    root.title('Steam')
     hoofdframe = LabelFrame(root, text="Steam")
     hoofdframe.pack(ipadx=500,
         ipady=50,
