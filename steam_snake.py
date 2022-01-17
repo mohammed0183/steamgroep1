@@ -3,12 +3,15 @@
 # Get a Steam API here:   https://steamcommunity.com/dev
 # You can look up Steam IDs by URL here:   https://steamid.io/
 
+
 # We're only going to need the 'requests' module
 import tkinter
 import requests
 import tkinter.messagebox as messagebox
 from tkinter import *
-
+window = Tk()
+window.title('PYTROOPS')
+window.geometry("600x600")
 tehapi = 'C808AFD79C4F1A523682FF587DFC4481'
 tehuid = '76561198992221003'  # This is to retrieve your friends list. Your profile needs to be set to public for this to work.
 tehuri = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=' + tehapi + '&steamid=' + tehuid + '&relationship=friend'
@@ -68,9 +71,16 @@ def printOnlineFriends(ids):
         for x in range(lennamediff):
             tspaces += ' '
         print(i + tspaces, "speelt nu " +  onlineDict[i] )
+        text = (i + tspaces, "speelt nu " +  onlineDict[i] )
+        txt = tkinter.Text(window, font="Times32")
+
+        txt.pack()
+        txt.insert('end', text)
 
 
         # END printOnlineFriends
 
 
 printOnlineFriends(joinedsids)
+
+window.mainloop()
