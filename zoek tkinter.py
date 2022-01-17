@@ -5,8 +5,7 @@ import json
 from datetime import datetime
 from tkinter import *
 import tkinter.messagebox as messagebox
-tijd=datetime.now()
-print(tijd)
+
 def inzenden():
  x = e_name.get()
  try:
