@@ -80,6 +80,7 @@ def new_win():
 
     root = Tk()
     root.title('Steam')
+    root.iconbitmap('Steam.ico')
     hoofdframe = LabelFrame(root, text="Steam")
     hoofdframe.pack(ipadx=500,
         ipady=50,
