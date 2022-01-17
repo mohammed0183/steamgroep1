@@ -1,6 +1,19 @@
-# input a number
-try:
-  num = int(input("Enter an integer number: "))
-  print("num:", num)
-except ValueError:
-    print("Please input integer only...")
+from tkinter import *
+import webbrowser
+
+
+
+def label2():
+    webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
+
+
+window = Tk()
+window.title('PYTROOPS')
+window.geometry("600x600")
+window.configure(background = "grey")
+pic = PhotoImage(file = "discord.png")
+
+
+btn2 = Button(window , image = pic , command = label2).grid(row =0 , column = 1)
+
+window.mainloop()
