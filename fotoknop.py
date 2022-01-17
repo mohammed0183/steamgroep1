@@ -11,9 +11,9 @@ window = Tk()
 window.title('PYTROOPS')
 window.geometry("600x600")
 window.configure(background = "grey")
-pic = PhotoImage(file = "discord.png")
+pic = PhotoImage(file = "discord2.png")
 
 
-btn2 = Button(window , image = pic , command = label2).grid(row =0 , column = 1)
+btn2 = Button(window , image = pic , command = label2, height= 50, width=69).grid(row =10 , column = 10)
 
 window.mainloop()
