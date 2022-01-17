@@ -48,6 +48,7 @@ def new_win():
 
         root.destroy()
         new_win()
+
     def vragen():
         webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
 
