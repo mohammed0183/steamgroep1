@@ -64,7 +64,7 @@ def printOnlineFriends(ids):
         lennamediff = (maxnamelen - len(i)) + 2
         for x in range(lennamediff):
             tspaces += ' '
-        print(i + tspaces, "[" + onlineDict[i] + "]")
+        print(i + tspaces, "speelt nu " +  onlineDict[i] )
         # END printOnlineFriends
 
 
