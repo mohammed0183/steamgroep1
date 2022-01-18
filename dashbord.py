@@ -28,7 +28,6 @@ w.geometry("%dx%d+%d+%d" %(width_of_window,height_of_window,x_coordinate,y_coord
 w.overrideredirect(1)
 
 
-
 #############progressbar          33333333333333333333333333333
 def new_win():
   # w.destroy()
@@ -166,15 +165,34 @@ def new_win():
 
 
     root = Tk()
+
+
+    style = ttk.Style()
+    style.theme_create('appstyle', parent='alt',
+                       settings={
+                           'TLabelframe': {
+                               'configure': {
+                                   'background': '#1b2838'
+                               }
+                           },
+                           'TLabelframe.Label': {
+                               'configure': {
+                                    'background': '#1b2838'
+                               }
+                           }
+                       }
+                       )
+    style.theme_use('appstyle')
     root.title('Steam')
     root.iconbitmap('Steam.ico')
-    hoofdframe = LabelFrame(root, text="Steam")
+    root.configure(bg='#2d2e2e')
+    hoofdframe = ttk.LabelFrame(root)
     hoofdframe.pack(ipadx=500,
         ipady=50,
         expand=False,
         side=BOTTOM)
 
-    photo = PhotoImage(file="steam_banner.png")
+    photo = PhotoImage(file="steammm.png")
     imgLabel = Label(root, image=photo)
     imgLabel.pack(side=TOP, pady=10)
 
@@ -222,7 +240,6 @@ def new_win():
     mainloop()
 
 
-
 def bar():
 
     l4=Label(w,text='Loading...',fg='white',bg=a)
@@ -242,21 +259,12 @@ def bar():
     new_win()
 
 
-
-
 progress.place(x=-10,y=235)
-
-
-
 
 #############
 # frame 333333333333333333333333
 #
 ###########
-
-
-
-
 
 '''
 
@@ -286,8 +294,6 @@ l3=Label(w,text='PROGRAMMED',fg='white',bg=a)
 lst3=('Calibri (Body)',13)
 l3.config(font=lst3)
 l3.place(x=50,y=110)
-
-
 
 
 w.mainloop()
