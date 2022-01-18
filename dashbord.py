@@ -9,6 +9,7 @@ import tkinter
 import requests
 import tkinter.messagebox as messagebox
 from tkinter import *
+from PIL import ImageTk, Image
 
 w=Tk()
 s = ttk.Style()
@@ -192,7 +193,7 @@ def new_win():
         expand=False,
         side=BOTTOM)
 
-    photo = PhotoImage(file="steammm.png")
+    photo = ImageTk.PhotoImage(Image.open("steammm.png"))
     imgLabel = Label(root, image=photo)
     imgLabel.pack(side=TOP, pady=10)
 
