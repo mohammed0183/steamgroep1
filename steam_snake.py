@@ -11,7 +11,7 @@ import tkinter.messagebox as messagebox
 from tkinter import *
 window = Tk()
 window.title('PYTROOPS')
-window.geometry("600x600")
+window.geometry("900x500")
 tehapi = 'C808AFD79C4F1A523682FF587DFC4481'
 tehuid = '76561198992221003'  # This is to retrieve your friends list. Your profile needs to be set to public for this to work.
 tehuri = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=' + tehapi + '&steamid=' + tehuid + '&relationship=friend'
@@ -61,7 +61,13 @@ def printOnlineFriends(ids):
             # onlineArray.append(userget['players'][i]['personaname'])
         else:
             # not online and not playing a game. continue to the next fren
+            text = ('al je vrienden zijn momenteel offline')
+            txt = tkinter.Text(window, font="Times32")
+
+            txt.pack()
+            txt.insert('end', text)
             continue
+
 
     sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
     for i in sorted(onlineDict.keys()):
