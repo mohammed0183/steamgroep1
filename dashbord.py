@@ -54,7 +54,7 @@ def new_win():
         new_win()
 
     def vragen():
-        webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
+        webbrowser.open('https://external-preview.redd.it/vxPXEGgL4v8mCGw06IFGsmJNtqWQg-z60xQQ79dHKPY.jpg?auto=webp&s=db7685262e9b352a4888e547f52a244e2ea2cb9f', new=2)
 
 
     def fun():
