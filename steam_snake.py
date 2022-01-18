@@ -60,7 +60,7 @@ def printOnlineFriends(ids):
                     maxnamelen = int(len(sname))
             # onlineArray.append(userget['players'][i]['personaname'])
         else:
-            # not online and not playing a game. continue to the next fren
+            print('Niemand is online')
             text = ('al je vrienden zijn momenteel offline')
             txt = tkinter.Text(window, font="Times32")
 

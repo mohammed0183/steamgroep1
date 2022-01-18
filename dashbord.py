@@ -135,6 +135,11 @@ def new_win():
                 print(i + tspaces, "speelt nu " + onlineDict[i])
                 text = (i + tspaces, "speelt nu " + onlineDict[i])
                 txt = tkinter.Text(root, font="Times32")
+            else:
+                print('Je vrienden zijn niet online')
+                text = ('Je vrienden zijn niet online')
+                txt = tkinter.Text(root, font="Times32")
+
 
                 txt.pack()
                 txt.insert('end', text)
