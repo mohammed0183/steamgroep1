@@ -174,6 +174,9 @@ def new_win():
     imgLabel.pack(side=TOP, pady=10)
 
 
+    pic = PhotoImage(file="discord2.png")
+
+
     lezenn = Button(hoofdframe, text='Lezen', font=('italic', 10), fg='white', bg=
     "Black",command=lezen)
     lezenn.grid(row=5, column=4, pady=50)
@@ -198,9 +201,9 @@ def new_win():
     "Black",command=x5)
     x5.grid(row=7, column=6, pady=10, padx= 46)
 
-    x6 = Button(hoofdframe, text='Vragen?', font=('italic', 10), fg='white', bg=
-    "#5865F2",command=vragen)
-    x6.grid(row=9, column=4, pady=10, padx= 46)
+
+    btn2 = Button(hoofdframe, image=pic, command=vragen, height=50, width=69)
+    btn2.grid(row=9, column=4, pady=10, padx= 46)
 
     root.geometry("900x500")
 
