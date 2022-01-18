@@ -186,14 +186,14 @@ def new_win():
     style.theme_use('appstyle')
     root.title('Steam')
     root.iconbitmap('Steam.ico')
-    root.configure(bg='#2d2e2e')
+    root.configure(bg='#1b2838')
     hoofdframe = ttk.LabelFrame(root)
     hoofdframe.pack(ipadx=500,
         ipady=50,
         expand=False,
         side=BOTTOM)
 
-    photo = ImageTk.PhotoImage(Image.open("steammm.png"))
+    photo = PhotoImage(file = "steam_banner.png")
     imgLabel = Label(root, image=photo)
     imgLabel.pack(side=TOP, pady=10)
 
@@ -229,7 +229,7 @@ def new_win():
     btn2 = Button(hoofdframe, image=pic, command=vragen, height=50, width=69)
     btn2.grid(row=9, column=4, pady=10, padx= 46)
 
-    root.geometry("900x500")
+    root.geometry("900x600")
 
     lezenframe = LabelFrame(root, text="")
     lezenframe.pack(pady=20)
