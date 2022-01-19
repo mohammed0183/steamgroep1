@@ -11,6 +11,7 @@ import tkinter.messagebox as messagebox
 from tkinter import *
 from PIL import ImageTk, Image
 
+
 w=Tk()
 s = ttk.Style()
 s.theme_use('clam')
@@ -146,7 +147,11 @@ def new_win():
                 for x in range(lennamediff):
                     tspaces += ' '
                 print(i + tspaces, "speelt nu " + onlineDict[i])
-                text = (i + tspaces, "speelt nu " + onlineDict[i])
+                print(i + tspaces)
+                if i + tspaces + onlineDict[i]== ' ' :
+                    text =('al je vrienden zijn offline')
+                else:
+                    text = (i + tspaces, "speelt nu " + onlineDict[i])
                 txt = tkinter.Text(root, font="Times32")
 
                 txt.pack()
@@ -158,6 +163,9 @@ def new_win():
 
     def x3():
         messagebox.showinfo("Mijn planning", "Red Button clicked")
+    def x6():
+        webbrowser.open('https://docdro.id/SILq3fp', new=2)
+
     def x5():
 
         hoofdframe.pack_forget()
@@ -235,7 +243,20 @@ def new_win():
 
 
     btn2 = Button(hoofdframe, image=pic, command=vragen, height=50, width=69)
-    btn2.grid(row=9, column=4, pady=10, padx= 46)
+    btn2.grid(row=9, column=3, pady=10, padx= 46)
+
+
+    x6 = Button(hoofdframe, text='stackeholder', font=('italic', 10), fg='white', bg=
+    "Black", command=x6)
+    x6.grid(row=9, column=5)
+
+
+    x6 = Button(hoofdframe, text='customer jurney', font=('italic', 10), fg='white', bg=
+    "Black", command=x6)
+    x6.grid(row=10, column=5)
+
+
+
 
     root.geometry("900x600")
 
