@@ -54,7 +54,10 @@ def new_win():
         new_win()
 
     def vragen():
-        webbrowser.open('https://external-preview.redd.it/vxPXEGgL4v8mCGw06IFGsmJNtqWQg-z60xQQ79dHKPY.jpg?auto=webp&s=db7685262e9b352a4888e547f52a244e2ea2cb9f', new=2)
+        webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
+#     def doc()
+#         webbrowser.open('https://docdro.id/SILq3fp', new=2)
+
 
 
     def fun():
@@ -63,7 +66,17 @@ def new_win():
         root.quit
 
     def x1():
-        messagebox.showinfo("Meest gespeeld", "Red Button clicked")
+        hoofdframe.pack_forget()
+        lezenframe.pack()
+        imgLabel.pack_forget()
+        json_filename = 'steam.json'
+        with open(json_filename, 'r') as inside:
+            data = json.load(inside)
+        text = json.dumps(sorted(data, key=lambda k: int(k['average_playtime']), reverse = True), indent=2)
+        txt = tk.Text(root, font="Times32")
+        root.title('Steam')
+        txt.pack()
+        txt.insert('end', text)
     def x2():
         # !/usr/local/bin/python3
         # steam_snake.py
@@ -135,11 +148,6 @@ def new_win():
                 print(i + tspaces, "speelt nu " + onlineDict[i])
                 text = (i + tspaces, "speelt nu " + onlineDict[i])
                 txt = tkinter.Text(root, font="Times32")
-            else:
-                print('Je vrienden zijn niet online')
-                text = ('Je vrienden zijn niet online')
-                txt = tkinter.Text(root, font="Times32")
-
 
                 txt.pack()
                 txt.insert('end', text)
