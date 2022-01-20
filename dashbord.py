@@ -246,12 +246,12 @@ def new_win():
     btn2.grid(row=9, column=3, pady=10, padx= 46)
 
 
-    x6 = Button(hoofdframe, text='stackeholder', font=('italic', 10), fg='white', bg=
+    x6 = Button(hoofdframe, text='Stakeholder', font=('italic', 10), fg='white', bg=
     "Black", command=x6)
     x6.grid(row=9, column=5)
 
 
-    x6 = Button(hoofdframe, text='customer jurney', font=('italic', 10), fg='white', bg=
+    x6 = Button(hoofdframe, text='Customer Journey', font=('italic', 10), fg='white', bg=
     "Black", command=x6)
     x6.grid(row=10, column=5)
 
