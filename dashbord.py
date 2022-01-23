@@ -1,3 +1,5 @@
+import sys
+import os
 from tkinter import ttk
 from tkinter.ttk import Progressbar
 from tkinter import *
@@ -10,6 +12,10 @@ import requests
 import tkinter.messagebox as messagebox
 from tkinter import *
 from PIL import ImageTk, Image
+import time
+
+
+
 
 
 w=Tk()
@@ -30,10 +36,8 @@ w.geometry("%dx%d+%d+%d" %(width_of_window,height_of_window,x_coordinate,y_coord
 w.overrideredirect(1)
 
 
-#############progressbar          33333333333333333333333333333
-def new_win():
-  # w.destroy()
 
+def new_win():
     def lezen():
 
         hoofdframe.pack_forget()
@@ -56,10 +60,6 @@ def new_win():
 
     def vragen():
         webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
-#     def doc()
-#         webbrowser.open('https://docdro.id/SILq3fp', new=2)
-
-
 
     def fun():
         funn = Tk()
@@ -78,44 +78,32 @@ def new_win():
         root.title('Steam')
         txt.pack()
         txt.insert('end', text)
-    def x2():
-        # !/usr/local/bin/python3
-        # steam_snake.py
-        # Get a Steam API here:   https://steamcommunity.com/dev
-        # You can look up Steam IDs by URL here:   https://steamid.io/
 
-        # We're only going to need the 'requests' module
+    def x2():
         hoofdframe.pack_forget()
         lezenframe.pack()
         imgLabel.pack_forget()
 
         tehapi = 'C808AFD79C4F1A523682FF587DFC4481'
-        tehuid = '76561198992221003'  # This is to retrieve your friends list. Your profile needs to be set to public for this to work.
+        tehuid = '76561198992221003'
         tehuri = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=' + tehapi + '&steamid=' + tehuid + '&relationship=friend'
 
-        ## Get list of your Steam friends
-        # +(if any profiles are private, you will not see their current status/game)
         friendlist = requests.get(tehuri).json()['friendslist']['friends']
 
         steamidlist = []
-        # For each friend json item, retrieve the Steam ID of each friend and append it to a list/array
+
         for i in range(len(friendlist)):
             steamidlist.append(friendlist[i]['steamid'])
 
-        # Convert the list/array to a comma-separated list of Steam user IDs for the API to retrieve.
         joinedsids = ','.join(steamidlist)
 
-        ## Function I wrote to print out friend data in json format.
-        # + call the function printFriendInfo() by passing a comma-separated
-        # + list of SteamID64 IDs, e.g. (the following IDs are fake):
-        # +      printFriendInfo(09812409,234890234,0982130)
         def printFriendInfo(ids):
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
             userget = requests.get(useruri).json()['response']
             for i in range(len(userget['players'])):
                 print(userget['players'][i])
 
-        # This function gets
+
         def printOnlineFriends(ids):
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
             userget = requests.get(useruri).json()['response']
@@ -126,22 +114,21 @@ def new_win():
             for i in range(len(userget['players'])):
                 tonli = userget['players'][i]['personastate']
                 if tonli == 1:
-                    # They're online. Are they playing a game? Does the 'gameextrainfo' key exist?
                     if 'gameextrainfo' in userget['players'][i]:
                         sname = userget['players'][i]['personaname']
                         sgame = userget['players'][i]['gameextrainfo']
                         onlineDict.update({sname: sgame})
                         if len(sname) > maxnamelen:
                             maxnamelen = int(len(sname))
-                    # onlineArray.append(userget['players'][i]['personaname'])
+
                 else:
-                    # not online and not playing a game. continue to the next fren
+
 
                     continue
 
             sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
             for i in sorted(onlineDict.keys()):
-                # for i in sorted (sortDict):
+
                 tspaces = ""
                 lennamediff = (maxnamelen - len(i)) + 2
                 for x in range(lennamediff):
@@ -156,8 +143,6 @@ def new_win():
 
                 txt.pack()
                 txt.insert('end', text)
-
-                # END printOnlineFriends
 
         printOnlineFriends(joinedsids)
 
@@ -201,7 +186,6 @@ def new_win():
                        )
     style.theme_use('appstyle')
     root.title('Steam')
-    root.iconbitmap('Steam.ico')
     root.configure(bg='#1b2838')
     hoofdframe = ttk.LabelFrame(root)
     hoofdframe.pack(ipadx=500,
@@ -271,7 +255,6 @@ def new_win():
 
 
 def bar():
-
     l4=Label(w,text='Loading...',fg='white',bg=a)
     lst4=('Calibri (Body)',10)
     l4.config(font=lst4)
@@ -290,18 +273,6 @@ def bar():
 
 
 progress.place(x=-10,y=235)
-
-#############
-# frame 333333333333333333333333
-#
-###########
-
-'''
-
-def rgb(r):
-    return "#%02x%02x%02x" % r
-#Frame(w,width=432,height=241,bg=rgb((100,100,100))).
-'''
 a='#249794'
 Frame(w,width=427,height=241,bg=a).place(x=0,y=0)  #249794
 b1=Button(w,width=10,height=1,text='Get Started',command=bar,border=0,fg=a,bg='white')
@@ -324,6 +295,7 @@ l3=Label(w,text='PROGRAMMED',fg='white',bg=a)
 lst3=('Calibri (Body)',13)
 l3.config(font=lst3)
 l3.place(x=50,y=110)
+
 
 
 w.mainloop()
