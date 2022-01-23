@@ -201,7 +201,7 @@ def new_win():
 
             e_name.delete(0, "end")
         naam = Label(hoofdframe, text="Voer de appid in.", font=('bold', 10))
-        naam.place(x=20, y=30)
+        naam.place(x=150, y=30)
         inzenden = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
         "Black", command=inzenden)
         inzenden.place(x=150, y=30)
@@ -209,7 +209,7 @@ def new_win():
         e_name.place(x=150, y=30)
         inzenden = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
         "Black", command=inzenden)
-        inzenden.place(x=150, y=30)
+        inzenden.place(x=50, y=30)
     def x5():
 
         hoofdframe.pack_forget()

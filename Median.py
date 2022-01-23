@@ -21,3 +21,8 @@ def median(res):
         mediaan = res[lengte // 2] #dit is wanneer een lijst oneven is, dan is het gewoon gedeelt door 2
     return float(mediaan)
 print(median(res))
+
+
+
+# als de lengte van de lijst gedeeld door 2 gelijk is an 0
+# dan
