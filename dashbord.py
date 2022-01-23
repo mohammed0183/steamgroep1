@@ -174,7 +174,42 @@ def new_win():
         messagebox.showinfo("Mijn planning", "Red Button clicked")
     def x6():
         webbrowser.open('https://docdro.id/SILq3fp', new=2)
+    def zoeken():
+        hoofdframe.pack_forget()
+        lezenframe.pack()
+        imgLabel.pack_forget()
+        def inzenden():
+            x = int(e_name.get())
+            with open('steam.json') as json_file:
+                data = json.load(json_file)
+            for i in data:
+                if i['appid'] == x:
+                    print(i['appid'])
+                    print(i['name'])
+                    print(i['release_date'])
+                    print(i['english'])
+                    print(i['developer'])
+                    print(i['publisher'])
+                    print(i['platforms'])
+                    text = (i['name'])
 
+                    txt = tkinter.Text(root, font="Times32")
+
+                    txt.pack()
+                    txt.insert('end', text)
+                    break
+
+            e_name.delete(0, "end")
+        naam = Label(hoofdframe, text="Voer de appid in.", font=('bold', 10))
+        naam.place(x=20, y=30)
+        inzenden = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
+        "Black", command=inzenden)
+        inzenden.place(x=150, y=30)
+        e_name = Entry()
+        e_name.place(x=150, y=30)
+        inzenden = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
+        "Black", command=inzenden)
+        inzenden.place(x=150, y=30)
     def x5():
 
         hoofdframe.pack_forget()
@@ -257,7 +292,7 @@ def new_win():
 
 
     btn2 = Button(hoofdframe, image=pic, command=vragen, height=50, width=69)
-    btn2.grid(row=9, column=3, pady=10, padx= 46)
+    btn2.grid(row=9, column=4, pady=10, padx= 46)
 
 
     x6 = Button(hoofdframe, text='Stakeholder', font=('italic', 10), fg='white', bg=
@@ -267,10 +302,11 @@ def new_win():
 
     x6 = Button(hoofdframe, text='Customer Journey', font=('italic', 10), fg='white', bg=
     "Black", command=x6)
-    x6.grid(row=10, column=5)
+    x6.grid(row=9, column=6)
 
-
-
+    x7 = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
+    "Black", command=zoeken)
+    x7.grid(row=9, column=3)
 
     root.geometry("900x600")
 
