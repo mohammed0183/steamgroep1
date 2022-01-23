@@ -11,7 +11,7 @@ import tkinter
 import requests
 import tkinter.messagebox as messagebox
 from tkinter import *
-from PIL import ImageTk, Image
+
 import time
 
 
