@@ -65,6 +65,30 @@ def new_win():
         funn = Tk()
         funn.geometry("1000x800")
         root.quit
+    def modus():
+        json_filename = 'steam.json'
+        with open(json_filename, 'r') as inside:
+             data = json.load(inside)
+
+
+
+        # Using list comprehension
+        # Get values of particular key in list of dictionaries
+        res = [ sub['appid'] for sub in data ]
+
+        # printing result
+        def median(res):
+            res.sort() # lst word gesorteerd
+            lengte = len(res)
+            if len(res) % 2 == 0: # kijken of de lijst even is zo ja , dan moeten we 2 medianen gebruiken
+                first_median = res[lengte // 2] # Eerste median
+                second_median = res[lengte // 2 - 1] # Tweede median
+                mediaan = (first_median + second_median) / 2 # hier heb je het gemiddelde van de mediaanen
+            else:
+                mediaan = res[lengte // 2] #dit is wanneer een lijst oneven is, dan is het gewoon gedeelt door 2
+            return float(mediaan)
+        messagebox.showinfo('Mediaan' , 'De mediaan van appid is '+ str(median(res)) )
+
 
     def x1():
         hoofdframe.pack_forget()
@@ -193,21 +217,27 @@ def new_win():
         expand=False,
         side=BOTTOM)
 
-    photo = PhotoImage(file = "steam_banner.png")
+    photo = PhotoImage(file = "./img/steam_banner.png")
     imgLabel = Label(root, image=photo)
     imgLabel.pack(side=TOP, pady=10)
 
 
-    pic = PhotoImage(file="discord2.png")
+    pic = PhotoImage(file="./img/discord2.png")
 
 
-    lezenn = Button(hoofdframe, text='Lezen', font=('italic', 10), fg='white', bg=
+    lezenn = Button(hoofdframe, text='Alle spellen', font=('italic', 12), fg='white', bg=
     "Black",command=lezen)
     lezenn.grid(row=5, column=4, pady=50)
 
     inzenden = Button(hoofdframe, text='Mijn vrienden', font=('italic', 10), fg='white', bg=
     "Black",command=fun )
     inzenden.grid(row=7, column=2, pady=10, padx= 46)
+
+    modus = Button(hoofdframe, text='Mediaan', font=('italic', 10), fg='white', bg=
+    "Black",command=modus  )
+    modus.grid(row=9, column=2)
+
+
 
     x1 = Button(hoofdframe, text='Meest gespeeld', font=('italic', 10), fg='white', bg=
     "Black",command=x1)
