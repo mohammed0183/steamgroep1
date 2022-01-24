@@ -178,38 +178,35 @@ def new_win():
         hoofdframe.pack_forget()
         lezenframe.pack()
         imgLabel.pack_forget()
+
         def inzenden():
             x = int(e_name.get())
-            with open('steam.json') as json_file:
-                data = json.load(json_file)
+
+            json_filename = 'steam.json'
+            with open(json_filename, 'r') as inside:
+                data = json.load(inside)
             for i in data:
-                if i['appid'] == x:
-                    print(i['appid'])
-                    print(i['name'])
-                    print(i['release_date'])
-                    print(i['english'])
-                    print(i['developer'])
-                    print(i['publisher'])
-                    print(i['platforms'])
-                    text = (i['name'])
+              if i['appid'] == x:
+               print(i['appid'])
+               print(i['name'])
+               print(i['release_date'])
+               print(i['english'])
+               print(i['developer'])
+               print(i['publisher'])
+               print(i['platforms'])
+               text =(i['name'])
 
-                    txt = tkinter.Text(root, font="Times32")
-
-                    txt.pack()
-                    txt.insert('end', text)
-                    break
-
-            e_name.delete(0, "end")
-        naam = Label(hoofdframe, text="Voer de appid in.", font=('bold', 10))
-        naam.place(x=150, y=30)
-        inzenden = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
-        "Black", command=inzenden)
-        inzenden.place(x=150, y=30)
+            txt = tk.Text(root, font="Times32")
+            root.title('Steam')
+            txt.pack()
+            txt.insert('end', text)
+        naam = Label(root, text = "Voer de appid in.", font=('bold', 10) )
+        naam.place(x=20, y=20)
         e_name = Entry()
-        e_name.place(x=150, y=30)
-        inzenden = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
-        "Black", command=inzenden)
-        inzenden.place(x=50, y=30)
+        e_name.place(x=150,y=20)
+        inzenden=Button(root, text='zoeken', font=('italic', 10), fg='white', bg=
+        "Black",command=inzenden)
+        inzenden.place(x=150, y=40)
     def x5():
 
         hoofdframe.pack_forget()
