@@ -62,9 +62,72 @@ def new_win():
         webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
 
     def fun():
-        funn = Tk()
-        funn.geometry("1000x800")
-        root.quit
+        hoofdframe.pack_forget()
+        lezenframe.pack()
+        imgLabel.pack_forget()
+
+        tehapi = 'C808AFD79C4F1A523682FF587DFC4481'
+        tehuid = '76561198992221003'
+        tehuri = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=' + tehapi + '&steamid=' + tehuid + '&relationship=friend'
+
+        friendlist = requests.get(tehuri).json()['friendslist']['friends']
+
+        steamidlist = []
+
+        for i in range(len(friendlist)):
+            steamidlist.append(friendlist[i]['steamid'])
+
+        joinedsids = ','.join(steamidlist)
+
+        def printFriendInfo(ids):
+            useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
+            userget = requests.get(useruri).json()['response']
+            for i in range(len(userget['players'])):
+                # print(userget['players'][i])
+                sname = userget['players'][i]['personaname']
+                print(sname)
+
+        def printOnlineFriends(ids):
+            useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
+            userget = requests.get(useruri).json()['response']
+
+            onlineDict = {}
+            global maxnamelen
+            maxnamelen = 0
+            for i in range(len(userget['players'])):
+                tonli = userget['players'][i]['personastate']
+                if tonli == 1:
+                    if 'gameextrainfo' in userget['players'][i]:
+                        sname = userget['players'][i]['personaname']
+                        sgame = userget['players'][i]['gameextrainfo']
+                        onlineDict.update({sname: sgame})
+                        if len(sname) > maxnamelen:
+                            maxnamelen = int(len(sname))
+
+                else:
+
+                    continue
+
+            sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
+            for i in sorted(onlineDict.keys()):
+
+                tspaces = ""
+                lennamediff = (maxnamelen - len(i)) + 2
+                for x in range(lennamediff):
+                    tspaces += ' '
+                print(i + tspaces, "speelt nu " + onlineDict[i])
+                print(i + tspaces)
+                if i + tspaces + onlineDict[i] == ' ':
+                    text = ('al je vrienden zijn offline')
+                else:
+                    text = (i + tspaces, "speelt nu " + onlineDict[i])
+                txt = tkinter.Text(root, font="Times32")
+
+                txt.pack()
+                txt.insert('end', text)
+
+        printOnlineFriends(joinedsids)
+        printFriendInfo(joinedsids)
     def modus():
         json_filename = 'steam.json'
         with open(json_filename, 'r') as inside:
@@ -125,7 +188,10 @@ def new_win():
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
             userget = requests.get(useruri).json()['response']
             for i in range(len(userget['players'])):
-                print(userget['players'][i])
+                #print(userget['players'][i])
+                sname = userget['players'][i]['personaname']
+
+
 
 
         def printOnlineFriends(ids):
@@ -169,6 +235,7 @@ def new_win():
                 txt.insert('end', text)
 
         printOnlineFriends(joinedsids)
+
 
     def x3():
         messagebox.showinfo("Mijn planning", "Red Button clicked")
@@ -275,7 +342,7 @@ def new_win():
     "Black",command=x1)
     x1.grid(row=7, column=3, pady=10, padx= 46)
 
-    x2 = Button(hoofdframe, text='Vrienden', font=('italic', 10), fg='white', bg=
+    x2 = Button(hoofdframe, text='Online Vrienden', font=('italic', 10), fg='white', bg=
     "Black",command=x2)
     x2.grid(row=7, column=4, pady=10, padx= 46)
 
