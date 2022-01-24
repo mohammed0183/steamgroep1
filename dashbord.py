@@ -20,6 +20,7 @@ import time
 
 w=Tk()
 s = ttk.Style()
+
 s.theme_use('clam')
 s.configure("red.Horizontal.TProgressbar", foreground='red', background='#4f4f4f')
 progress=Progressbar(w,style="red.Horizontal.TProgressbar",orient=HORIZONTAL,length=500,mode='determinate',)
@@ -84,8 +85,13 @@ def new_win():
             userget = requests.get(useruri).json()['response']
             for i in range(len(userget['players'])):
                 # print(userget['players'][i])
-                sname = userget['players'][i]['personaname']
-                print(sname)
+
+                text = userget['players'][i]['personaname']
+                print(text)
+                txt = tkinter.Text(root, font="Times32")
+
+                txt.pack()
+                txt.insert('end', text)
 
         def printOnlineFriends(ids):
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
@@ -121,10 +127,7 @@ def new_win():
                     text = ('al je vrienden zijn offline')
                 else:
                     text = (i + tspaces, "speelt nu " + onlineDict[i])
-                txt = tkinter.Text(root, font="Times32")
 
-                txt.pack()
-                txt.insert('end', text)
 
         printOnlineFriends(joinedsids)
         printFriendInfo(joinedsids)
