@@ -62,9 +62,7 @@ def new_win():
         webbrowser.open('https://discord.gg/ptBRjBHM', new=2)
 
     def fun():
-        hoofdframe.pack_forget()
-        lezenframe.pack()
-        imgLabel.pack_forget()
+
 
         tehapi = 'C808AFD79C4F1A523682FF587DFC4481'
         tehuid = '76561198992221003'
@@ -86,6 +84,10 @@ def new_win():
                 # print(userget['players'][i])
                 sname = userget['players'][i]['personaname']
                 print(sname)
+
+                messagebox.showinfo('Vrienden' , sname )
+
+
 
         def printOnlineFriends(ids):
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
@@ -225,14 +227,14 @@ def new_win():
                     tspaces += ' '
                 print(i + tspaces, "speelt nu " + onlineDict[i])
                 print(i + tspaces)
-                if i + tspaces + onlineDict[i]== ' ' :
-                    text =('al je vrienden zijn offline')
+                if not i + tspaces + onlineDict[i]  :
+                    messagebox.showinfo('VRIENDEN', 'Er zijn geen vrienden online')
                 else:
                     text = (i + tspaces, "speelt nu " + onlineDict[i])
-                txt = tkinter.Text(root, font="Times32")
+                    txt = tkinter.Text(root, font="Times32")
 
-                txt.pack()
-                txt.insert('end', text)
+                    txt.pack()
+                    txt.insert('end', text)
 
         printOnlineFriends(joinedsids)
 
@@ -311,7 +313,7 @@ def new_win():
     root.title('Steam')
     root.configure(bg='#1b2838')
     hoofdframe = ttk.LabelFrame(root)
-    hoofdframe.pack(ipadx=500,
+    hoofdframe.pack(ipadx=550,
         ipady=50,
         expand=False,
         side=BOTTOM)
@@ -324,7 +326,7 @@ def new_win():
     pic = PhotoImage(file="./img/discord2.png")
 
 
-    lezenn = Button(hoofdframe, text='Alle spellen', font=('italic', 12), fg='white', bg=
+    lezenn = Button(hoofdframe, text='Alle games', font=('italic', 12), fg='white', bg=
     "Black",command=lezen)
     lezenn.grid(row=5, column=4, pady=50)
 
@@ -332,13 +334,13 @@ def new_win():
     "Black",command=fun )
     inzenden.grid(row=7, column=2, pady=10, padx= 46)
 
-    modus = Button(hoofdframe, text='Mediaan', font=('italic', 10), fg='white', bg=
+    modus = Button(hoofdframe, text='Mediaan van appid', font=('italic', 10), fg='white', bg=
     "Black",command=modus  )
     modus.grid(row=9, column=2)
 
 
 
-    x1 = Button(hoofdframe, text='Meest gespeeld', font=('italic', 10), fg='white', bg=
+    x1 = Button(hoofdframe, text='Meest gespeeld game', font=('italic', 10), fg='white', bg=
     "Black",command=x1)
     x1.grid(row=7, column=3, pady=10, padx= 46)
 
@@ -350,7 +352,7 @@ def new_win():
     "Black",command=x3)
     x3.grid(row=7, column=5, pady=10, padx= 46)
 
-    x5 = Button(hoofdframe, text='Aanbevelingen', font=('italic', 10), fg='white', bg=
+    x5 = Button(hoofdframe, text='Aanbevolen games', font=('italic', 10), fg='white', bg=
     "Black",command=x5)
     x5.grid(row=7, column=6, pady=10, padx= 46)
 
@@ -368,11 +370,11 @@ def new_win():
     "Black", command=x6)
     x6.grid(row=9, column=6)
 
-    x7 = Button(hoofdframe, text='zoeken', font=('italic', 10), fg='white', bg=
+    x7 = Button(hoofdframe, text='Zoeken naar een game', font=('italic', 10), fg='white', bg=
     "Black", command=zoeken)
     x7.grid(row=9, column=3)
 
-    root.geometry("900x600")
+    root.geometry("980x600+300+50")
 
     lezenframe = LabelFrame(root, text="")
     lezenframe.pack(pady=20)
