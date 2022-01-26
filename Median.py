@@ -25,4 +25,7 @@ print(median(res))
 
 
 # als de lengte van de lijst gedeeld door 2 gelijk is an 0
-# dan
+# dan is de eerste variabele lengte van de lijst gedeeld door 2
+# en de 2de variable is de lengte van de lijst gedeeeld door 2 -1
+# het gemiddedelde van deze 2 variable is de mediaan
+# wanneer een lijst on even is is de mediaan de legte van de lijst gedeeld door 2
