@@ -84,9 +84,11 @@ def new_win():
             for i in range(len(userget['players'])):
                 # print(userget['players'][i])
 
-                text = userget['players'][i]['personaname']
+                sname = str(userget['players'][i]['personaname'])
+                text=sname
+                text.replace(" ", "")
                 print(text)
-                txt = tkinter.Text(root, font="Times32")
+                txt = tkinter.Text(root, font="Times10")
 
                 txt.pack()
                 txt.insert('end', text)
@@ -107,7 +109,6 @@ def new_win():
                 if tonli == 1:
                     if 'gameextrainfo' in userget['players'][i]:
                         sname = userget['players'][i]['personaname']
-                        sgame = userget['players'][i]['gameextrainfo']
                         onlineDict.update({sname: sgame})
                         if len(sname) > maxnamelen:
                             maxnamelen = int(len(sname))
@@ -186,19 +187,11 @@ def new_win():
 
         joinedsids = ','.join(steamidlist)
 
-        def printFriendInfo(ids):
-            useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
-            userget = requests.get(useruri).json()['response']
-            for i in range(len(userget['players'])):
-                #print(userget['players'][i])
-                sname = userget['players'][i]['personaname']
-
-
-
 
         def printOnlineFriends(ids):
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
             userget = requests.get(useruri).json()['response']
+
 
             onlineDict = {}
             global maxnamelen
@@ -213,11 +206,9 @@ def new_win():
                         if len(sname) > maxnamelen:
                             maxnamelen = int(len(sname))
 
-                elif tonli == 0:
-
-                    messagebox.showinfo('VRIENDEN', 'Er zijn geen vrienden online')
-
-
+                        continue
+            if maxnamelen == 0:
+                messagebox.showinfo('Vrienden', 'Er zijn geen vrienden online')
 
             sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
             for i in sorted(onlineDict.keys()):
@@ -226,9 +217,11 @@ def new_win():
                 lennamediff = (maxnamelen - len(i)) + 2
                 for x in range(lennamediff):
                     tspaces += ' '
+
                 print(i + tspaces, "speelt nu " + onlineDict[i])
                 print(i + tspaces)
-                if i + tspaces + onlineDict[i]  :
+
+                if i + tspaces + onlineDict[i]:
                     text = (i + tspaces, "speelt nu " + onlineDict[i])
                     hoofdframe.pack_forget()
                     lezenframe.pack()
@@ -238,6 +231,7 @@ def new_win():
 
                     txt.pack()
                     txt.insert('end', text)
+
 
 
 
