@@ -172,9 +172,6 @@ def new_win():
         txt.insert('end', text)
 
     def x2():
-        hoofdframe.pack_forget()
-        lezenframe.pack()
-        imgLabel.pack_forget()
 
         tehapi = 'C808AFD79C4F1A523682FF587DFC4481'
         tehuid = '76561198992221003'
@@ -216,10 +213,11 @@ def new_win():
                         if len(sname) > maxnamelen:
                             maxnamelen = int(len(sname))
 
-                else:
+                elif tonli == 0:
+
+                    messagebox.showinfo('VRIENDEN', 'Er zijn geen vrienden online')
 
 
-                    continue
 
             sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
             for i in sorted(onlineDict.keys()):
@@ -230,14 +228,18 @@ def new_win():
                     tspaces += ' '
                 print(i + tspaces, "speelt nu " + onlineDict[i])
                 print(i + tspaces)
-                if not i + tspaces + onlineDict[i]  :
-                    messagebox.showinfo('VRIENDEN', 'Er zijn geen vrienden online')
-                else:
+                if i + tspaces + onlineDict[i]  :
                     text = (i + tspaces, "speelt nu " + onlineDict[i])
+                    hoofdframe.pack_forget()
+                    lezenframe.pack()
+                    imgLabel.pack_forget()
+
                     txt = tkinter.Text(root, font="Times32")
 
                     txt.pack()
                     txt.insert('end', text)
+
+
 
         printOnlineFriends(joinedsids)
 
