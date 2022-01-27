@@ -81,58 +81,15 @@ def new_win():
         def printFriendInfo(ids):
             useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
             userget = requests.get(useruri).json()['response']
+            new = []
             for i in range(len(userget['players'])):
                 # print(userget['players'][i])
 
                 sname = str(userget['players'][i]['personaname'])
-                text=sname
-                text.replace(" ", "")
-                print(text)
-                txt = tkinter.Text(root, font="Times10")
+                new.append(sname)
+            print(new)
+            messagebox.showinfo('Mijn vrienden', "\n".join(new) )
 
-                txt.pack()
-                txt.insert('end', text)
-
-                messagebox.showinfo('Vrienden' , sname )
-
-
-
-        def printOnlineFriends(ids):
-            useruri = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + tehapi + '&steamids=' + ids
-            userget = requests.get(useruri).json()['response']
-
-            onlineDict = {}
-            global maxnamelen
-            maxnamelen = 0
-            for i in range(len(userget['players'])):
-                tonli = userget['players'][i]['personastate']
-                if tonli == 1:
-                    if 'gameextrainfo' in userget['players'][i]:
-                        sname = userget['players'][i]['personaname']
-                        onlineDict.update({sname: sgame})
-                        if len(sname) > maxnamelen:
-                            maxnamelen = int(len(sname))
-
-                else:
-
-                    continue
-
-            sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
-            for i in sorted(onlineDict.keys()):
-
-                tspaces = ""
-                lennamediff = (maxnamelen - len(i)) + 2
-                for x in range(lennamediff):
-                    tspaces += ' '
-                print(i + tspaces, "speelt nu " + onlineDict[i])
-                print(i + tspaces)
-                if i + tspaces + onlineDict[i] == ' ':
-                    text = ('al je vrienden zijn offline')
-                else:
-                    text = (i + tspaces, "speelt nu " + onlineDict[i])
-
-
-        printOnlineFriends(joinedsids)
         printFriendInfo(joinedsids)
     def modus():
         json_filename = 'steam.json'
@@ -208,7 +165,7 @@ def new_win():
 
                         continue
             if maxnamelen == 0:
-                messagebox.showinfo('Vrienden', 'Er zijn geen vrienden online')
+                messagebox.showinfo('Vrienden', 'Er zijn geen vrienden online', icon='warning')
 
             sortDict = sorted(onlineDict.items(), key=lambda z: z[1])
             for i in sorted(onlineDict.keys()):
