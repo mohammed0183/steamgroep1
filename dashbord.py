@@ -1,4 +1,5 @@
 import sys
+import time
 import os
 from tkinter import ttk
 from tkinter.ttk import Progressbar
@@ -11,8 +12,6 @@ import tkinter
 import requests
 import tkinter.messagebox as messagebox
 from tkinter import *
-
-import time
 
 
 
@@ -39,6 +38,9 @@ w.overrideredirect(1)
 
 
 def new_win():
+
+
+
     def lezen():
 
         hoofdframe.pack_forget()
@@ -91,7 +93,7 @@ def new_win():
             messagebox.showinfo('Mijn vrienden', "\n".join(new) )
 
         printFriendInfo(joinedsids)
-    def modus():
+    def modi():
         json_filename = 'steam.json'
         with open(json_filename, 'r') as inside:
              data = json.load(inside)
@@ -114,6 +116,30 @@ def new_win():
                 mediaan = res[lengte // 2] #dit is wanneer een lijst oneven is, dan is het gewoon gedeelt door 2
             return float(mediaan)
         messagebox.showinfo('Mediaan' , 'De mediaan van appid is '+ str(median(res)) )
+
+    def modus():
+            json_filename = 'steam.json'
+            with open(json_filename, 'r') as inside:
+                 data = json.load(inside)
+
+
+
+            # Using list comprehension
+            # Get values of particular key in list of dictionaries
+            res = [ sub['genres'] for sub in data ]
+
+            # printing result
+            most = max(list(map(res.count, res))) # Hier bereken ik hoevaak de meeste getal voorkomt
+
+            modi = list(set(filter(lambda x: res.count(x) == most, res))) # Hier maak ik een willekeurige argument aan met als waarde dat die most krijgt en zoekt in lst
+            return modi
+            messagebox.showinfo('Modus' , 'Meest voorkomende genre = '+ str(modi) )
+
+    def times():
+        current_time=time.strftime("%H:%M:%S")
+        clock.config(text=current_time)
+        clock.after(200,times)
+
 
 
     def x1():
@@ -282,6 +308,7 @@ def new_win():
     pic = PhotoImage(file="./img/discord2.png")
 
 
+
     lezenn = Button(hoofdframe, text='Alle games', font=('italic', 12), fg='white', bg=
     "Black",command=lezen)
     lezenn.grid(row=5, column=4, pady=50)
@@ -290,11 +317,17 @@ def new_win():
     "Black",command=fun )
     inzenden.grid(row=7, column=2, pady=10, padx= 46)
 
-    modus = Button(hoofdframe, text='Mediaan van appid', font=('italic', 10), fg='white', bg=
+    modi = Button(hoofdframe, text='Mediaan van appid', font=('italic', 10), fg='white', bg=
+    "Black",command=modi  )
+    modi.grid(row=9, column=2)
+
+    modus = Button(hoofdframe, text='Meest voorkomende genre', font=('italic', 10), fg='white', bg=
     "Black",command=modus  )
-    modus.grid(row=9, column=2)
+    modus.grid(row=10, column=2)
 
-
+    clock=Label(hoofdframe,font=("times",20,"bold"),bg='#1b2838')
+    clock.grid(row=12, column=4,)
+    times()
 
     x1 = Button(hoofdframe, text='Meest gespeeld game', font=('italic', 10), fg='white', bg=
     "Black",command=x1)
