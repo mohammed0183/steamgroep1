@@ -225,6 +225,8 @@ def new_win():
         messagebox.showinfo("Mijn planning", "Red Button clicked")
     def x6():
         webbrowser.open('https://docdro.id/SILq3fp', new=2)
+    def x7():
+        webbrowser.open('https://docdro.id/oeyOJJA', new=2)
     def zoeken():
         hoofdframe.pack_forget()
         lezenframe.pack()
@@ -356,7 +358,7 @@ def new_win():
 
 
     x6 = Button(hoofdframe, text='Customer Journey', font=('italic', 10), fg='white', bg=
-    "Black", command=x6)
+    "Black", command=x7)
     x6.grid(row=9, column=6)
 
     x7 = Button(hoofdframe, text='Zoeken naar een game', font=('italic', 10), fg='white', bg=
