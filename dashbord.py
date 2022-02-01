@@ -222,7 +222,7 @@ def new_win():
 
 
     def x3():
-        messagebox.showinfo("Mijn planning", "Red Button clicked")
+        import spel.py
     def x6():
         webbrowser.open('https://docdro.id/SILq3fp', new=2)
     def x7():
@@ -233,6 +233,7 @@ def new_win():
         imgLabel.pack_forget()
 
         def inzenden():
+
             x = int(e_name.get())
 
             json_filename = 'steam.json'
@@ -253,6 +254,8 @@ def new_win():
             root.title('Steam')
             txt.pack()
             txt.insert('end', text)
+
+
         naam = Label(root, text = "Voer de appid in.", font=('bold', 10) )
         naam.place(x=20, y=20)
         e_name = Entry()
@@ -260,6 +263,7 @@ def new_win():
         inzenden=Button(root, text='zoeken', font=('italic', 10), fg='white', bg=
         "Black",command=inzenden)
         inzenden.place(x=150, y=40)
+
     def x5():
 
         hoofdframe.pack_forget()
@@ -325,7 +329,7 @@ def new_win():
 
     modus = Button(hoofdframe, text='Meest voorkomende genre', font=('italic', 10), fg='white', bg=
     "Black",command=modus  )
-    modus.grid(row=10, column=2)
+    modus.grid(row=10, column=4)
 
     clock=Label(hoofdframe,font=("times",20,"bold"),bg='#1b2838')
     clock.grid(row=12, column=4,)
@@ -339,7 +343,7 @@ def new_win():
     "Black",command=x2)
     x2.grid(row=7, column=4, pady=10, padx= 46)
 
-    x3 = Button(hoofdframe, text='Mijn planning', font=('italic', 10), fg='white', bg=
+    x3 = Button(hoofdframe, text='Kleine spelletje', font=('italic', 10), fg='white', bg=
     "Black",command=x3)
     x3.grid(row=7, column=5, pady=10, padx= 46)
 
@@ -422,5 +426,3 @@ l3.place(x=50,y=110)
 
 
 w.mainloop()
-
-
