@@ -56,6 +56,8 @@ def new_win():
         txt.pack()
         txt.insert('end', text)
 
+
+
     def hoofd():
 
         root.destroy()
@@ -234,11 +236,14 @@ def new_win():
 
         def inzenden():
 
+
+
             x = int(e_name.get())
 
             json_filename = 'steam.json'
             with open(json_filename, 'r') as inside:
                 data = json.load(inside)
+
             for i in data:
               if i['appid'] == x:
                print(i['appid'])
@@ -249,6 +254,8 @@ def new_win():
                print(i['publisher'])
                print(i['platforms'])
                text =(i['name'])
+
+
 
             txt = tk.Text(root, font="Times32")
             root.title('Steam')
